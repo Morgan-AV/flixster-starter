@@ -46,25 +46,20 @@ const MovieList = () => {
         movies.original_title.toLowerCase().includes(searchTerms.toLowerCase())
     );
 
-    const sortMovies = async (movies, sortOption) => {
+    const sortMovies = (movies, sortOption) => {
 
-        const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&sort_by=${sortOption}`
-        );
-        const data = await response.json();
-        console.log("More movie data is:", data);
-        setSortOption(data || []);
+        
 
-        // return [...movies].sort((a,b) => {
-        //     if (sortOption === "title") {
-        //         return a.original_title.localeCompare(b.original_title);
-        //     } else if (sortOption === "release_date") {
-        //         return new Date(b.release_date) - new Date(a.release_date);
-        //     } else if (sortOption === "rating") {
-        //         return b.vote_average - a.vote_average;
-        //     }
-        //     return 0;
-        // });
+        return [...movies].sort((a,b) => {
+            if (sortOption === "title") {
+                return a.original_title.localeCompare(b.original_title);
+            } else if (sortOption === "release_date") {
+                return new Date(b.release_date) - new Date(a.release_date);
+            } else if (sortOption === "rating") {
+                return b.vote_average - a.vote_average;
+            }
+            return 0;
+        });
     }
 
     const sortedMovies = sortMovies(filteredMovies, sortOption);
@@ -95,7 +90,7 @@ const MovieList = () => {
             <div className="heady">
                 <div className="playbutton" onClick={refreshPage}>Now Playing</div>
                 <SearchBar setMovies={setMovies}/>
-                <div>
+                <div className="sortBar">
                     <label htmlFor="sort">Sort by:</label>
                     <select id="sort" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
                     <option value="home">Home</option>
