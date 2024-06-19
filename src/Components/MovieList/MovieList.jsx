@@ -8,7 +8,6 @@ import Modal from "../Modal/Modal";
 
 
 const MovieList = () => {
-    
     const API_KEY = import.meta.env.VITE_API_KEY;
 
     const [movies, setMovies] = useState([]); //saving an array
@@ -17,6 +16,8 @@ const MovieList = () => {
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [movieDetails, setMovieDetails] = useState(null);
     const [sortOption, setSortOption] = useState("title");
+    const [likedMovies, setLikedMovies] = useState({});
+
 
     useEffect (() => {
         async function fetchMovies(){
@@ -28,10 +29,9 @@ const MovieList = () => {
                 setMovies(data.results || []);
         }
         fetchMovies();
-        console.log("movies fetched")
-
-    
+        console.log("movies fetched")    
     }, []);
+
 
     const fetchMovieDetails = async (id) => {
         const response = await fetch(
@@ -47,9 +47,6 @@ const MovieList = () => {
     );
 
     const sortMovies = (movies, sortOption) => {
-
-        
-
         return [...movies].sort((a,b) => {
             if (sortOption === "title") {
                 return a.original_title.localeCompare(b.original_title);
@@ -61,6 +58,19 @@ const MovieList = () => {
             return 0;
         });
     }
+
+    const handleLikeButtonClick = (event, movie) => {
+        event.stopPropagation();
+        setLikedMovies((prevLikedMovies) => {
+            const updatedLikedMovies = { ...prevLikedMovies };
+            if (updatedLikedMovies[movie.id]) {
+                delete updatedLikedMovies[movie.id];
+            } else {
+                updatedLikedMovies[movie.id] = true;
+            }
+            return updatedLikedMovies;
+        });
+    };
 
     const sortedMovies = sortMovies(filteredMovies, sortOption);
 
@@ -82,7 +92,6 @@ const MovieList = () => {
         // setMovieDetails(null); // Reset movie details
         // fetchMovies(); // Refetch the movies
     } 
-
 
     return (
         <>
@@ -108,7 +117,14 @@ const MovieList = () => {
                         <img className="movieimg" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} /> 
                         <h2>{movie.original_title}</h2>
                         <div>Rating: {movie.vote_average}</div>
-                    </div>
+                        <div className="like-section">
+                        <button className="watchedbtn"
+                            className={`watchedbtn ${likedMovies[movie.id] ? "liked" : ""}`}
+                            onClick={(event) => handleLikeButtonClick(event, movie)}                        >
+                            Favorite
+                        </button>
+                    </div>                    
+</div>
                 
                 ))}
 

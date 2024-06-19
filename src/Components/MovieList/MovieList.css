@@ -12,15 +12,17 @@
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+    background-color: rgb(60, 59, 55);
+    color: black;
+    border: 3px solid yellow;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .load-more-button:hover {
-    background-color: #0056b3;
+    background-color: yellow;
+    color: black;
+    transition: 0.8s;
 }
 
 .heady{
@@ -59,4 +61,15 @@
     padding: 9px ;
     border-radius: 4px;
 
+}
+
+.watchedbtn{
+    width: 95px;
+    height: 40px;
+    background-color: rgb(60, 59, 55);
+}
+
+.watchedbtn.liked{
+    background-color: yellow;
+    color: black;
 }
