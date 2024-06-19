@@ -1,0 +1,28 @@
+.search-containter{
+    display: flex;
+    scale: 15%;
+    font-size: larger;
+    font-family: monospace;
+    width: auto;
+}
+
+.search-input{
+    display: flex;
+    justify-content: center;
+    scale: 150%;
+    margin: 20px 0;
+}
+
+.searchbutton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16pt;
+    border: 2px solid black;
+    width: 150px;
+    margin: 5px 0;
+    background-color: rgb(60, 59, 55);
+    color: white;
+    border-radius: 8px;
+    padding: 5px;
+}

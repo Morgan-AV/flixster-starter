@@ -1,0 +1,15 @@
+.footer{
+    background-color: yellow;
+    margin-top: 0px;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    back
+}
+
+.foot{
+    margin-bottom: 0px;
+}

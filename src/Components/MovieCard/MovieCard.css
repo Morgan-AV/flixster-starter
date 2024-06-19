@@ -1,0 +1,22 @@
+.MovieCard {
+    width: 320px;
+    height: 500px;
+    border: 3px solid yellow;
+    padding: 16px 16px 90px 16px;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px yellow;
+    position: relative;
+    color: white;
+    background-color: rgb(60, 59, 55);
+}
+
+.movieimg{
+    width: 300px;
+    height: auto;
+}
+
+.movieCard img {
+    width: 100%;
+    height: 100%;
+}
